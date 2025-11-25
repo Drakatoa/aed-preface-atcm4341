@@ -84,5 +84,3 @@ Each course includes:
 - **Course:** ATCM 4341 - Applied Experience Design
 - **Partner:** Fisher Investments
 - **Purpose:** Design Capstone Project
-
-This project was developed as part of the Applied Experience Design capstone course, working in partnership with Fisher Investments to address real-world challenges in the hiring and onboarding process.
