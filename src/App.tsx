@@ -119,7 +119,7 @@ function AppRoutes() {
       <Route path="/hr/roles" element={<EmployerRoles />} />
       <Route
         path="/hr/roles/:roleId"
-        element={<EmployerApplicants onViewCertificate={handleEmployerCertificate} />}
+        element={<EmployerApplicants onViewCertificate={handleEmployerCertificate} onNavigateLinkedIn={handleNavigateLinkedIn} />}
       />
       <Route
         path="/hr/certificate"
@@ -128,6 +128,7 @@ function AppRoutes() {
             data={employerCertificateData}
             onNavigateBack={() => navigate(-1)}
             onNavigateRoles={() => navigate('/hr/roles')}
+            onNavigateLinkedIn={handleNavigateLinkedIn}
           />
         }
       />

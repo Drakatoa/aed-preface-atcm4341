@@ -213,9 +213,10 @@ interface EmployerApplicantsProps {
     initials?: string;
     color?: string;
   }) => void;
+  onNavigateLinkedIn?: (data?: { company: string; role: string; completedDate: string }) => void;
 }
 
-const EmployerApplicants: React.FC<EmployerApplicantsProps> = ({ onViewCertificate }) => {
+const EmployerApplicants: React.FC<EmployerApplicantsProps> = ({ onViewCertificate, onNavigateLinkedIn }) => {
   const navigate = useNavigate();
   const { roleId } = useParams<{ roleId: string }>();
 
@@ -331,7 +332,18 @@ const EmployerApplicants: React.FC<EmployerApplicantsProps> = ({ onViewCertifica
                       View Resume
                       <FileText size={14} className="text-[#3e2b4d]" />
                     </button>
-                    <button className="w-9 h-9 bg-white hover:bg-gray-50 rounded-full flex items-center justify-center shadow-sm transition-colors flex-shrink-0">
+                    <button 
+                      onClick={() => {
+                        if (applicant.name === 'Reba Jones') {
+                          onNavigateLinkedIn?.({
+                            company: role.company,
+                            role: role.title,
+                            completedDate: 'Completed March 2025'
+                          });
+                        }
+                      }}
+                      className="w-9 h-9 bg-white hover:bg-gray-50 rounded-full flex items-center justify-center shadow-sm transition-colors flex-shrink-0"
+                    >
                       <Linkedin size={18} className="text-[#3e2b4d]" />
                     </button>
                   </div>

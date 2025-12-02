@@ -21,6 +21,7 @@ interface EmployerCertificatePageProps {
   data?: EmployerCertificateInfo | null;
   onNavigateBack?: () => void;
   onNavigateRoles?: () => void;
+  onNavigateLinkedIn?: (data?: { company: string; role: string; completedDate: string }) => void;
 }
 
 const fallbackData: EmployerCertificateInfo = {
@@ -37,7 +38,7 @@ const fallbackData: EmployerCertificateInfo = {
   ],
 };
 
-const EmployerCertificatePage = ({ data, onNavigateBack, onNavigateRoles }: EmployerCertificatePageProps) => {
+const EmployerCertificatePage = ({ data, onNavigateBack, onNavigateRoles, onNavigateLinkedIn }: EmployerCertificatePageProps) => {
   const certificate = data ?? fallbackData;
 
   const avatarContent = () => {
@@ -123,7 +124,18 @@ const EmployerCertificatePage = ({ data, onNavigateBack, onNavigateRoles }: Empl
               <button className="flex-1 flex items-center justify-center gap-2 border border-gray-300 text-[#3e2b4d] font-semibold py-3 px-4 rounded-full hover:bg-gray-50 transition-colors">
                 View Resume <FileText size={18} />
               </button>
-              <button className="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors">
+              <button 
+                onClick={() => {
+                  if (certificate.applicantName === 'Reba Jones') {
+                    onNavigateLinkedIn?.({
+                      company: certificate.company,
+                      role: certificate.role,
+                      completedDate: 'Completed March 2025'
+                    });
+                  }
+                }}
+                className="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
                 <Linkedin size={20} />
               </button>
             </div>

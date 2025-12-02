@@ -22,7 +22,7 @@ import vanguardBanner from './assets/vanguard-banner.png';
 interface UserProfileProps {
   onNavigateHome?: () => void;
   onNavigateCertificate?: (data: { company: string; role: string; completedDate: string }) => void;
-  onNavigateLinkedIn?: (data: { company: string; role: string; completedDate: string }) => void;
+  onNavigateLinkedIn?: (data?: { company: string; role: string; completedDate: string }) => void;
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ onNavigateHome, onNavigateCertificate, onNavigateLinkedIn }) => {
@@ -169,7 +169,11 @@ const UserProfile: React.FC<UserProfileProps> = ({ onNavigateHome, onNavigateCer
                   <button className="text-gray-500 hover:text-[#FF0000] transition-colors" title="Resume PDF">
                     <FileText size={20} />
                   </button>
-                  <button className="text-gray-500 hover:text-[#0a66c2] transition-colors" title="LinkedIn Profile">
+                  <button 
+                    onClick={() => onNavigateLinkedIn?.()}
+                    className="text-gray-500 hover:text-[#0a66c2] transition-colors"
+                    title="LinkedIn Profile"
+                  >
                    <Linkedin size={20} />
                   </button>
                 </div>
