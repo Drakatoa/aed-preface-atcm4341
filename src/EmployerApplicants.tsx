@@ -43,7 +43,7 @@ const applicantPools: Record<
     applicants: [
       {
         id: 1,
-        name: 'Reba Jones',
+        name: 'Brad Jones',
         avatar: profilePic,
         score: 98,
         certifications: ['Certified in Customer Service', 'Certified in Business Intelligence'],
@@ -334,7 +334,7 @@ const EmployerApplicants: React.FC<EmployerApplicantsProps> = ({ onViewCertifica
                     </button>
                     <button 
                       onClick={() => {
-                        if (applicant.name === 'Reba Jones') {
+                        if (applicant.name === 'Brad Jones') {
                           onNavigateLinkedIn?.({
                             company: role.company,
                             role: role.title,

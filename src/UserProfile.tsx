@@ -148,20 +148,20 @@ const UserProfile: React.FC<UserProfileProps> = ({ onNavigateHome, onNavigateCer
             <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-sm bg-gray-200">
               <img 
                 src={profilePic} 
-                alt="Reba Jones" 
+                alt="Brad Jones" 
                 className="w-full h-full object-cover"
               />
             </div>
             {/* Text Details */}
             <div className="flex flex-col gap-2">
               <h1 className="text-4xl font-bold text-[#3e2b4d] tracking-tight mb-1">
-                Reba Jones
+                Brad Jones
               </h1>
               
               {/* Container for Email, Icons, and Member Date with equal spacing */}
               <div className="flex flex-col gap-3">
                 <p className="text-lg text-gray-600 font-medium leading-tight">
-                  Reba.Jones225@gmail.com
+                  Brad.Jones225@gmail.com
                 </p>
                 
                 {/* Resume & LinkedIn Icons */}

@@ -25,7 +25,7 @@ interface EmployerCertificatePageProps {
 }
 
 const fallbackData: EmployerCertificateInfo = {
-  applicantName: 'Reba Jones',
+  applicantName: 'Brad Jones',
   company: 'Fidelity',
   role: 'Customer Service Representative',
   score: 96,
@@ -126,7 +126,7 @@ const EmployerCertificatePage = ({ data, onNavigateBack, onNavigateRoles, onNavi
               </button>
               <button 
                 onClick={() => {
-                  if (certificate.applicantName === 'Reba Jones') {
+                  if (certificate.applicantName === 'Brad Jones') {
                     onNavigateLinkedIn?.({
                       company: certificate.company,
                       role: certificate.role,

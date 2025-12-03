@@ -100,7 +100,7 @@ const LinkedInProfile: React.FC<LinkedInProfileProps> = ({ certificateData, onNa
 
             {/* Profile Pic */}
             <div className="absolute top-24 left-6 border-4 border-white rounded-full w-40 h-40 overflow-hidden bg-white">
-              <img src={profilePic} alt="Reba Jones" className="w-full h-full object-cover" />
+              <img src={profilePic} alt="Brad Jones" className="w-full h-full object-cover" />
             </div>
 
             {/* Content Below Banner */}
@@ -108,7 +108,7 @@ const LinkedInProfile: React.FC<LinkedInProfileProps> = ({ certificateData, onNa
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    Reba Jones
+                    Brad Jones
                     <span className="text-gray-500 text-sm font-normal bg-gray-100 px-2 py-0.5 rounded-full flex items-center gap-1">
                       <ShieldCheck className="w-3 h-3" /> She/her
                     </span>
@@ -162,10 +162,10 @@ const LinkedInProfile: React.FC<LinkedInProfileProps> = ({ certificateData, onNa
             <div className="border border-gray-200 rounded-lg p-4">
               {/* Post Header */}
               <div className="flex items-center gap-3 mb-3">
-                <img src={profilePic} alt="Reba" className="w-10 h-10 rounded-full object-cover" />
+                <img src={profilePic} alt="Brad" className="w-10 h-10 rounded-full object-cover" />
                 <div>
                   <div className="flex items-center gap-1">
-                    <span className="font-semibold text-gray-900 text-sm">Reba Jones</span>
+                    <span className="font-semibold text-gray-900 text-sm">Brad Jones</span>
                     <ShieldCheck className="w-3 h-3 text-gray-500" />
                   </div>
                   <p className="text-xs text-gray-500 leading-tight">Student at The University of Texas at Dallas</p>
