@@ -110,7 +110,7 @@ const LinkedInProfile: React.FC<LinkedInProfileProps> = ({ certificateData, onNa
                   <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                     Brad Jones
                     <span className="text-gray-500 text-sm font-normal bg-gray-100 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3" /> She/her
+                      <ShieldCheck className="w-3 h-3" /> He/him
                     </span>
                   </h1>
                   <p className="text-lg text-gray-900 mt-1">Student at The University of Texas at Dallas</p>
