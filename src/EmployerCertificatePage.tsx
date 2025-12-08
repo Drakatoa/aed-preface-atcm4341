@@ -1,6 +1,6 @@
 import { ArrowLeft, FileText, Linkedin, Award } from 'lucide-react';
 import prefaceLogo from './assets/preface-logo.png';
-import certificateImage from './assets/completion-cert.png';
+import certificateImage from './assets/company-view-cert.png';
 
 type SectionScore = { title: string; score: number; description?: string };
 
