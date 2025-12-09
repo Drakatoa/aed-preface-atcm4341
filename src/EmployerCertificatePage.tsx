@@ -28,13 +28,13 @@ const fallbackData: EmployerCertificateInfo = {
   applicantName: 'Brad Jones',
   company: 'Fidelity',
   role: 'Customer Service Representative',
-  score: 96,
+  score: 90,
   certifications: ['Certified in Customer Service', 'Certified in Business Intelligence'],
   description: 'Experience working with Fortune 500 companies in high-volume call centers.',
   sections: [
-    { title: 'Technical Proficiency', score: 94, description: 'Mastery of Fidelity systems, policy workflows, and escalation steps.' },
-    { title: 'Soft Skills & Communication', score: 98, description: 'Handled complex calls with empathy and perfect tone control.' },
-    { title: 'Values & Vision Alignment', score: 92, description: 'Consistently links problem-solving back to customer-first principles.' },
+    { title: 'Personality, Behavioral, Soft Skills', score: 90, description: 'Handled complex calls with empathy and perfect tone control.' },
+    { title: 'Technical Proficiency', score: 95, description: 'Mastery of Fidelity systems, policy workflows, and escalation steps.' },
+    { title: 'Company Values & Company Vision Alignment', score: 85, description: 'Consistently links problem-solving back to customer-first principles.' },
   ],
 };
 

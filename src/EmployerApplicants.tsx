@@ -45,13 +45,13 @@ const applicantPools: Record<
         id: 1,
         name: 'Brad Jones',
         avatar: profilePic,
-        score: 98,
+        score: 90,
         certifications: ['Certified in Customer Service', 'Certified in Business Intelligence'],
         description: 'Experience working with Fortune 500 companies in high-volume call centers.',
         sections: [
-          { title: 'Technical Proficiency', score: 94, description: 'Mastery of Fidelity systems, policy workflows, and escalation steps.' },
-          { title: 'Soft Skills & Communication', score: 98, description: 'Handled 12 simulated calls with empathy and perfect tone control.' },
-          { title: 'Values & Vision Alignment', score: 92, description: 'Consistently links problem-solving back to customer-first principles.' },
+          { title: 'Personality, Behavioral, Soft Skills', score: 90, description: 'Handled complex calls with empathy and perfect tone control.' },
+          { title: 'Technical Proficiency', score: 95, description: 'Mastery of Fidelity systems, policy workflows, and escalation steps.' },
+          { title: 'Company Values & Company Vision Alignment', score: 85, description: 'Consistently links problem-solving back to customer-first principles.' },
         ],
       },
       {
@@ -63,9 +63,9 @@ const applicantPools: Record<
         certifications: ['Certified in Sales', 'Certified in Conflict Resolution'],
         description: 'Top-performing sales representative with a focus on tech solutions.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 86, description: 'Great rapport, slight rush when answering tough questions.' },
           { title: 'Technical Proficiency', score: 80, description: 'Understands core CRM tooling; needs polish on documentation flow.' },
-          { title: 'Soft Skills & Communication', score: 86, description: 'Great rapport, slight rush when answering tough questions.' },
-          { title: 'Values & Vision Alignment', score: 88, description: 'Creative win-back strategy that mirrors Fidelity service standards.' },
+          { title: 'Company Values & Company Vision Alignment', score: 88, description: 'Creative win-back strategy that mirrors Fidelity service standards.' },
         ],
       },
       {
@@ -77,9 +77,9 @@ const applicantPools: Record<
         certifications: ['Certified in Project Management', 'Certified in Agile Methodologies'],
         description: 'Skilled project lead with 5+ years managing cross-functional teams.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 91, description: 'Calm under pressure and quickly builds rapport.' },
           { title: 'Technical Proficiency', score: 93, description: 'Precise with verification scripts and complex account workflows.' },
-          { title: 'Soft Skills & Communication', score: 91, description: 'Calm under pressure and quickly builds rapport.' },
-          { title: 'Values & Vision Alignment', score: 90, description: 'Demonstrates curiosity and continuous-learning mindset.' },
+          { title: 'Company Values & Company Vision Alignment', score: 90, description: 'Demonstrates curiosity and continuous-learning mindset.' },
         ],
       },
       {
@@ -91,9 +91,9 @@ const applicantPools: Record<
         certifications: ['Certified in Data Analytics', 'Certified in Python Programming'],
         description: 'Data analyst passionate about uncovering actionable insights from big data.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 81, description: 'Friendly tone, but should slow pacing on complex calls.' },
           { title: 'Technical Proficiency', score: 78, description: 'Understands tooling but needs more practice on policy branching.' },
-          { title: 'Soft Skills & Communication', score: 81, description: 'Friendly tone, but should slow pacing on complex calls.' },
-          { title: 'Values & Vision Alignment', score: 84, description: 'Shows accountability and eagerness to improve.' },
+          { title: 'Company Values & Company Vision Alignment', score: 84, description: 'Shows accountability and eagerness to improve.' },
         ],
       },
     ],
@@ -112,9 +112,9 @@ const applicantPools: Record<
         certifications: ['Certified Financial Analyst', 'Certified in Risk Management'],
         description: 'Financial analyst specializing in equities and derivatives pricing.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 90, description: 'Explains portfolio shifts clearly to stakeholders.' },
           { title: 'Technical Proficiency', score: 96, description: 'Accurate model adjustments and scenario math.' },
-          { title: 'Soft Skills & Communication', score: 90, description: 'Explains portfolio shifts clearly to stakeholders.' },
-          { title: 'Values & Vision Alignment', score: 88, description: 'Connects recommendations to Schwab client ethos.' },
+          { title: 'Company Values & Company Vision Alignment', score: 88, description: 'Connects recommendations to Schwab client ethos.' },
         ],
       },
       {
@@ -126,9 +126,9 @@ const applicantPools: Record<
         certifications: ['Certified in Python Programming', 'Certified in Tableau'],
         description: 'Data-driven analyst with 3+ years in investment research.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 82, description: 'Could tighten client briefing structure.' },
           { title: 'Technical Proficiency', score: 84, description: 'Strong derivatives coverage with one math slip.' },
-          { title: 'Soft Skills & Communication', score: 82, description: 'Could tighten client briefing structure.' },
-          { title: 'Values & Vision Alignment', score: 86, description: 'Highlights Schwab’s transparency in every recommendation.' },
+          { title: 'Company Values & Company Vision Alignment', score: 86, description: "Highlights Schwab's transparency in every recommendation." },
         ],
       },
       {
@@ -140,9 +140,9 @@ const applicantPools: Record<
         certifications: ['Certified in Business Intelligence', 'Certified in SQL'],
         description: 'Excellent communicator experienced in investor reporting.',
         sections: [
+          { title: 'Personality, Behavioral, Soft Skills', score: 89, description: 'Persuasive client education plan.' },
           { title: 'Technical Proficiency', score: 80, description: 'Solid thesis, needs deeper data references.' },
-          { title: 'Soft Skills & Communication', score: 89, description: 'Persuasive client education plan.' },
-          { title: 'Values & Vision Alignment', score: 84, description: 'Reinforces Schwab’s investor-first approach.' },
+          { title: 'Company Values & Company Vision Alignment', score: 84, description: "Reinforces Schwab's investor-first approach." },
         ],
       },
     ],
