@@ -6,7 +6,6 @@ import {
   User, 
   ArrowLeft, 
   ChevronDown, 
-  ChevronRight,
   ChevronUp, 
   CheckCircle, 
   Circle, 
@@ -32,6 +31,7 @@ const CoursePage: React.FC<CoursePageProps> = ({ onNavigateHome, onNavigateProfi
   // --- STATE ---
   const [expandedModule, setExpandedModule] = useState<number | null>(3); // Default Module 3 open in sidebar
   const [expandedSectionId, setExpandedSectionId] = useState<string>('technical'); // Default open section in main content
+  const [expandedItemId, setExpandedItemId] = useState<string | null>(null); // Track which item is expanded
 
   // --- BRAND LOGO COMPONENT ---
   const BrandLogo = () => (
@@ -94,36 +94,36 @@ const CoursePage: React.FC<CoursePageProps> = ({ onNavigateHome, onNavigateProfi
       id: 'technical',
       title: 'Technical Analysis',
       items: [
-        { type: 'video', title: 'Intro Video', duration: '5 minutes', completed: true },
-        { type: 'article', title: 'Basics', duration: 'Article - 12 minutes', completed: true },
-        { type: 'article', title: 'Data Analysis', duration: 'Article - 5 minutes', completed: true },
-        { type: 'assignment', title: 'Analysis Free Response', duration: 'Assignment - 12 minutes', completed: true },
+        { id: 'tech-video-1', type: 'video', title: 'Intro Video', duration: '5 minutes', completed: true },
+        { id: 'tech-article-1', type: 'article', title: 'Basics', duration: 'Article - 12 minutes', completed: true },
+        { id: 'tech-article-2', type: 'article', title: 'Data Analysis', duration: 'Article - 5 minutes', completed: true },
+        { id: 'tech-assignment-1', type: 'assignment', title: 'Analysis Free Response', duration: 'Assignment - 12 minutes', completed: true },
       ]
     },
     {
       id: 'trend',
       title: 'Trend Analysis',
       items: [
-        { type: 'video', title: 'Identifying Trends', duration: '8 minutes', completed: false },
-        { type: 'article', title: 'Support & Resistance', duration: 'Article - 15 minutes', completed: false },
-        { type: 'quiz', title: 'Trend Spotting Quiz', duration: 'Quiz - 10 minutes', completed: false },
+        { id: 'trend-video-1', type: 'video', title: 'Identifying Trends', duration: '8 minutes', completed: false },
+        { id: 'trend-article-1', type: 'article', title: 'Support & Resistance', duration: 'Article - 15 minutes', completed: false },
+        { id: 'trend-quiz-1', type: 'quiz', title: 'Trend Spotting Quiz', duration: 'Quiz - 10 minutes', completed: false },
       ]
     },
     {
       id: 'chart',
       title: 'Chart Patterns',
       items: [
-        { type: 'video', title: 'Head & Shoulders', duration: '12 minutes', completed: false },
-        { type: 'article', title: 'Candlestick Basics', duration: 'Article - 20 minutes', completed: false },
-        { type: 'assignment', title: 'Pattern Recognition', duration: 'Assignment - 15 minutes', completed: false },
+        { id: 'chart-video-1', type: 'video', title: 'Head & Shoulders', duration: '12 minutes', completed: false },
+        { id: 'chart-article-1', type: 'article', title: 'Candlestick Basics', duration: 'Article - 20 minutes', completed: false },
+        { id: 'chart-assignment-1', type: 'assignment', title: 'Pattern Recognition', duration: 'Assignment - 15 minutes', completed: false },
       ]
     },
     {
       id: 'proficiency',
       title: 'Module 3 Proficiency/ Technical Skills',
       items: [
-        { type: 'quiz', title: 'Final Module Exam', duration: 'Exam - 45 minutes', completed: false },
-        { type: 'assignment', title: 'Portfolio Project', duration: 'Project - 2 hours', completed: false },
+        { id: 'prof-quiz-1', type: 'quiz', title: 'Final Module Exam', duration: 'Exam - 45 minutes', completed: false },
+        { id: 'prof-assignment-1', type: 'assignment', title: 'Portfolio Project', duration: 'Project - 2 hours', completed: false },
       ]
     }
   ];
@@ -131,6 +131,268 @@ const CoursePage: React.FC<CoursePageProps> = ({ onNavigateHome, onNavigateProfi
   // Helper to toggle main sections
   const toggleSection = (id: string) => {
     setExpandedSectionId(expandedSectionId === id ? id : id);
+  };
+
+  // Quiz Component
+  const QuizContent: React.FC = () => {
+    const [answers, setAnswers] = useState<{ [key: string]: string }>({});
+    const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
+
+    const handleTextChange = (questionId: string, value: string) => {
+      setAnswers(prev => ({ ...prev, [questionId]: value }));
+    };
+
+    const handleOptionChange = (questionId: string, option: string) => {
+      setSelectedOptions(prev => ({ ...prev, [questionId]: option }));
+    };
+
+    // Prevent copy, paste, and cut operations
+    const handlePaste = (e: React.ClipboardEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const handleCopy = (e: React.ClipboardEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const handleCut = (e: React.ClipboardEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const handleContextMenu = (e: React.MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    return (
+      <div className="mt-6 p-6 bg-[#FDF8FF] rounded-lg border border-purple-100 animate-in fade-in slide-in-from-top-2 duration-300">
+        <div className="mb-6">
+          <h3 className="text-xl font-bold text-[#2d2436] mb-2">Trend Spotting Quiz</h3>
+        </div>
+
+        <div className="space-y-8">
+          {/* Free Response Question 1 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                1
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-3">
+                  Explain the difference between an uptrend and a downtrend. What are the key characteristics that help identify each?
+                </label>
+                <textarea
+                  value={answers['q1'] || ''}
+                  onChange={(e) => handleTextChange('q1', e.target.value)}
+                  onPaste={handlePaste}
+                  onCopy={handleCopy}
+                  onCut={handleCut}
+                  onContextMenu={handleContextMenu}
+                  placeholder="Type your answer here..."
+                  className="w-full min-h-[120px] p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7c6a96] focus:border-transparent resize-none text-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Free Response Question 2 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                2
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-3">
+                  Describe how support and resistance levels are formed and why they are important in trend analysis.
+                </label>
+                <textarea
+                  value={answers['q2'] || ''}
+                  onChange={(e) => handleTextChange('q2', e.target.value)}
+                  onPaste={handlePaste}
+                  onCopy={handleCopy}
+                  onCut={handleCut}
+                  onContextMenu={handleContextMenu}
+                  placeholder="Type your answer here..."
+                  className="w-full min-h-[120px] p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7c6a96] focus:border-transparent resize-none text-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Free Response Question 3 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                3
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-3">
+                  What role do volume indicators play in confirming trend strength? Provide a specific example.
+                </label>
+                <textarea
+                  value={answers['q3'] || ''}
+                  onChange={(e) => handleTextChange('q3', e.target.value)}
+                  onPaste={handlePaste}
+                  onCopy={handleCopy}
+                  onCut={handleCut}
+                  onContextMenu={handleContextMenu}
+                  placeholder="Type your answer here..."
+                  className="w-full min-h-[120px] p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7c6a96] focus:border-transparent resize-none text-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Multiple Choice Question 1 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                4
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-4">
+                  Which of the following best describes a trend reversal signal?
+                </label>
+                <div className="space-y-3">
+                  {['A break of a key support level with increasing volume', 'A consolidation pattern forming at the top', 'A continuation of the current trend', 'A decrease in trading volume'].map((option, idx) => {
+                    const optionLabel = String.fromCharCode(65 + idx); // A, B, C, D
+                    const isSelected = selectedOptions['q4'] === option;
+                    return (
+                      <label
+                        key={idx}
+                        className={`flex items-center gap-3 p-3 rounded-md border-2 cursor-pointer transition-all ${
+                          isSelected
+                            ? 'border-[#7c6a96] bg-purple-50'
+                            : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="q4"
+                          value={option}
+                          checked={isSelected}
+                          onChange={() => handleOptionChange('q4', option)}
+                          onPaste={handlePaste}
+                          onCopy={handleCopy}
+                          onCut={handleCut}
+                          onContextMenu={handleContextMenu}
+                          className="w-4 h-4 text-[#7c6a96] focus:ring-[#7c6a96]"
+                        />
+                        <span className="font-medium text-gray-700 min-w-[24px]">{optionLabel}.</span>
+                        <span className="text-gray-700">{option}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Free Response Question 4 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                5
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-3">
+                  How would you use trend lines to make trading decisions? Walk through your analytical process.
+                </label>
+                <textarea
+                  value={answers['q5'] || ''}
+                  onChange={(e) => handleTextChange('q5', e.target.value)}
+                  onPaste={handlePaste}
+                  onCopy={handleCopy}
+                  onCut={handleCut}
+                  onContextMenu={handleContextMenu}
+                  placeholder="Type your answer here..."
+                  className="w-full min-h-[120px] p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7c6a96] focus:border-transparent resize-none text-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Multiple Choice Question 2 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                6
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-4">
+                  What is the primary purpose of identifying trend direction in technical analysis?
+                </label>
+                <div className="space-y-3">
+                  {['To predict exact price movements', 'To align trading strategies with market momentum', 'To eliminate all trading risks', 'To guarantee profitable trades'].map((option, idx) => {
+                    const optionLabel = String.fromCharCode(65 + idx); // A, B, C, D
+                    const isSelected = selectedOptions['q6'] === option;
+                    return (
+                      <label
+                        key={idx}
+                        className={`flex items-center gap-3 p-3 rounded-md border-2 cursor-pointer transition-all ${
+                          isSelected
+                            ? 'border-[#7c6a96] bg-purple-50'
+                            : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="q6"
+                          value={option}
+                          checked={isSelected}
+                          onChange={() => handleOptionChange('q6', option)}
+                          onPaste={handlePaste}
+                          onCopy={handleCopy}
+                          onCut={handleCut}
+                          onContextMenu={handleContextMenu}
+                          className="w-4 h-4 text-[#7c6a96] focus:ring-[#7c6a96]"
+                        />
+                        <span className="font-medium text-gray-700 min-w-[24px]">{optionLabel}.</span>
+                        <span className="text-gray-700">{option}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Free Response Question 5 */}
+          <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex items-start gap-3 mb-4">
+              <span className="flex-shrink-0 w-8 h-8 bg-[#7c6a96] text-white rounded-full flex items-center justify-center font-bold text-sm">
+                7
+              </span>
+              <div className="flex-1">
+                <label className="block text-base font-semibold text-gray-900 mb-3">
+                  Discuss the limitations of trend analysis. What factors should traders consider beyond trend identification?
+                </label>
+                <textarea
+                  value={answers['q7'] || ''}
+                  onChange={(e) => handleTextChange('q7', e.target.value)}
+                  onPaste={handlePaste}
+                  onCopy={handleCopy}
+                  onCut={handleCut}
+                  onContextMenu={handleContextMenu}
+                  placeholder="Type your answer here..."
+                  className="w-full min-h-[120px] p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7c6a96] focus:border-transparent resize-none text-gray-700"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="mt-8 flex justify-end">
+          <button className="px-6 py-3 bg-[#7c6a96] text-white font-semibold rounded-md hover:bg-[#644D76] transition-colors shadow-sm">
+            Submit Quiz
+          </button>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -234,13 +496,13 @@ const CoursePage: React.FC<CoursePageProps> = ({ onNavigateHome, onNavigateProfi
                   {expandedModule === mod.id && mod.subItems && (
                     <div className="ml-9 mb-4 space-y-3 mt-1">
                       {mod.subItems.map((sub, idx) => {
-                        const isSubActive = expandedSectionId === sub.id;
+                        const isSubActive = 'id' in sub && expandedSectionId === sub.id;
                         return (
                           <div 
                             key={idx} 
                             className="flex flex-col cursor-pointer group"
                             onClick={() => {
-                              if (sub.id) setExpandedSectionId(sub.id);
+                              if ('id' in sub && sub.id) setExpandedSectionId(sub.id);
                             }}
                           >
                             <span className={`text-sm font-bold ${isSubActive ? 'text-black' : 'text-gray-500 group-hover:text-gray-800'}`}>
@@ -298,46 +560,86 @@ const CoursePage: React.FC<CoursePageProps> = ({ onNavigateHome, onNavigateProfi
                   {/* Section Items (Only show if open) */}
                   {isOpen && (
                     <div className="space-y-6 ml-1 md:ml-7 mb-10 animate-in fade-in slide-in-from-top-2 duration-300">
-                      {section.items.map((item, idx) => (
-                        <div key={idx} className="group">
-                          <div className="flex items-start gap-4">
-                            {/* Checkbox */}
-                            <button className="mt-1 text-black hover:text-gray-700 transition-colors">
-                               {item.completed ? (
-                                 <CheckSquare
-                                   className="w-5 h-5 text-[#644D76]"
-                                   strokeWidth={2.4}
-                                   style={{ fill: 'none' }}
-                                 />
-                               ) : (
-                                 <Square
-                                   className="w-5 h-5 text-gray-400"
-                                   strokeWidth={2}
-                                   style={{ fill: 'none' }}
-                                 />
-                               )}
-                            </button>
+                      {section.items.map((item, idx) => {
+                        const isItemExpanded = expandedItemId === item.id;
+                        const isQuiz = item.type === 'quiz';
+                        return (
+                          <div key={idx} className="group">
+                            <div 
+                              className="flex items-start gap-4 cursor-pointer hover:bg-purple-50/50 p-2 rounded-md transition-colors"
+                              onClick={() => {
+                                if (isQuiz) {
+                                  setExpandedItemId(isItemExpanded ? null : item.id);
+                                }
+                              }}
+                            >
+                              {/* Checkbox */}
+                              <button 
+                                className="mt-1 text-black hover:text-gray-700 transition-colors"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  // Handle checkbox toggle
+                                }}
+                              >
+                                 {item.completed ? (
+                                   <CheckSquare
+                                     className="w-5 h-5 text-[#644D76]"
+                                     strokeWidth={2.4}
+                                     style={{ fill: 'none' }}
+                                   />
+                                 ) : (
+                                   <Square
+                                     className="w-5 h-5 text-gray-400"
+                                     strokeWidth={2}
+                                     style={{ fill: 'none' }}
+                                   />
+                                 )}
+                              </button>
 
-                            {/* Item Details */}
-                            <div className="flex flex-col gap-1">
-                              <h3 className="font-bold text-lg text-gray-900 leading-none">
-                                {item.title}
-                              </h3>
-                              
-                              <div className="flex items-center gap-2 text-gray-500 mt-1">
-                                {item.type === 'video' && <PlayCircle className="w-4 h-4" />}
-                                {item.type === 'article' && <FileText className="w-4 h-4" />}
-                                {item.type === 'assignment' && <ClipboardList className="w-4 h-4" />}
-                                {item.type === 'quiz' && <HelpCircle className="w-4 h-4" />}
+                              {/* Item Details */}
+                              <div className="flex-1 flex flex-col gap-1">
+                                <div className="flex items-center gap-2">
+                                  <h3 className="font-bold text-lg text-gray-900 leading-none">
+                                    {item.title}
+                                  </h3>
+                                </div>
                                 
-                                <span className="text-sm md:text-base font-medium text-gray-400">
-                                  {item.duration}
-                                </span>
+                                <div className="flex items-center gap-2 text-gray-500 mt-1">
+                                  {item.type === 'video' && <PlayCircle className="w-4 h-4" />}
+                                  {item.type === 'article' && <FileText className="w-4 h-4" />}
+                                  {item.type === 'assignment' && <ClipboardList className="w-4 h-4" />}
+                                  {item.type === 'quiz' && <HelpCircle className="w-4 h-4" />}
+                                  
+                                  <span className="text-sm md:text-base font-medium text-gray-400">
+                                    {item.duration}
+                                  </span>
+                                  {isQuiz && (
+                                    <span className="text-xs text-[#7c6a96] font-medium ml-2">
+                                      Click to view questions
+                                    </span>
+                                  )}
+                                </div>
                               </div>
+
+                              {/* Chevron for quiz items */}
+                              {isQuiz && (
+                                <div className="mt-3.5 mr-2.5">
+                                  {isItemExpanded ? (
+                                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                                  ) : (
+                                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                                  )}
+                                </div>
+                              )}
                             </div>
+
+                            {/* Quiz Content */}
+                            {isQuiz && isItemExpanded && (
+                              <QuizContent />
+                            )}
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   )}
                 </div>
